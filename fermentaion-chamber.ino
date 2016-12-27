@@ -52,10 +52,10 @@
 #define FRIDGE_OFF    0
 #define FRIDGE_ON     1
 #define FRIDGE_SETPOINT      19.0
-#define FRIDGE_MIN_TEMP      18.0
-#define FRIDGE_MAX_TEMP      20.0
+#define FRIDGE_MIN_TEMP      19.0
+#define FRIDGE_MAX_TEMP      21.0
 
-#define TEMP_SENS_CAL_OFFSET -13.1
+#define TEMP_SENS_CAL_OFFSET -10.3//300//610//-13.1
 #define KELVIN               273.15
 
 Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS,  TFT_DC, TFT_RST); 
@@ -102,8 +102,10 @@ void setup(void){
 
 //  Alarm.timerRepeat(617, recordSample);
 //  Alarm.timerRepeat(617, tftGraph);
-  Alarm.timerRepeat(1, recordSample);
-  Alarm.timerRepeat(1, tftGraph);
+  Alarm.timerRepeat(308, recordSample);
+  Alarm.timerRepeat(308, tftGraph);
+//  Alarm.timerRepeat(1, recordSample);
+//  Alarm.timerRepeat(1, tftGraph);
   
 }
 
@@ -120,8 +122,8 @@ void recordTemp(){
   }
   float rawTemp = sum / 50.0;
   currentTemp = (rawTemp * 0.4882812) - KELVIN + TEMP_SENS_CAL_OFFSET;
-//  Serial.print("rawTemp "); Serial.println(rawTemp);
-//  Serial.print("currentTemp "); Serial.println(currentTemp);
+  Serial.print("rawTemp "); Serial.println(rawTemp);
+  Serial.print("currentTemp "); Serial.println(currentTemp);
 }
 
 void manageFridge(){
